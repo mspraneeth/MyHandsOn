@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html>
+<center>
+<head>
+<style type="text/css">.button{cursor:pointer;}</style>
+<script type="text/javascript">
+studata=[['RollNo','StudentName','CollegeName','Marks','Sem'],['1','Virat','IIT','100','8'],['2','Rohit','IIT','100','6'],['3','shikdar','JNU','90','6'],['4','Rahul','IIT','80','4'],['5','Dhoni','IISC','70','4'],['6','Hardik','IIM','80','8']]
+document.write("<table border='1px'>");
+for(i=0;i<studata.length;i++){
+document.write("<tr>")
+for(j=0;j<studata[i].length;j++){
+document.write("<td> "+studata[i][j]+"</td>")
+}
+document.write("</tr>")
+}
+document.write("</table>");
+
+function alpha(e){
+if(!( e.which >= 97 && e.which <= 122))
+{
+e.preventDefault(); 
+}
+}
+function alphabets(e){
+if(!( e.which >= 65 && e.which<=90 || e.which >=97 && e.which<= 122))
+{
+e.preventDefault(); 
+}
+}
+function hideImage()  { 
+document.getElementById('image').style.visibility ='hidden'; 
+} 
+function calc(){
+var a=document.getElementById('t1').value;
+var b=document.getElementById('t2').value;
+var sum= a+b;
+alert(sum);
+}
+function showCoords(event) {
+var x = event.clientX;
+var y = event.clientY;
+var coords = "X coords: " + x + ", Y coords: " + y;
+document.getElementById("demo").innerHTML = coords;
+}
+var windowObjectReference;
+var windowFeatures = "menubar=yes,location=yes,resizable=yes,scrollbars=yes,status=yes";
+function openRequestedPopup() {
+windowObjectReference = window.open("http://www.google.com/", "GOOGLE_WindowName", windowFeatures);
+}
+function rupee()
+{
+dollar = document.getElementById("dollar").value;
+document.getElementById("result").innerHTML = dollar * 74.76;
+}
+function cvrt() {
+x=window.prompt("enter the dollar");
+y=parseInt(x)*74.76;
+document.getElementById('pid').innerHTML=y;
+  
+}
+
+</script>
+<title></title>
+</head>
+<body>
+  <br>
+  <br>
+Only Small case chars : <input type="text" id="alpha" onkeypress="alpha(event)"><br><br>
+Only alphabets : <input type="text" id="alpha" onkeypress="alphabets(event)"><br><br>
+Change cursor style to Hand : <input type="submit" class="button" value="Mouseover to change" name="submit"><br><br>
+click on image to hide : <br><br>
+<img src="lion.jpg" height="80px" id="image" onclick="hideImage()"><br><br>
+<h3 onclick="showCoords(event)">Click this heading to get the x (horizontal) and y (vertical) coordinates of the mouse pointer when it was clicked.</h3><p id="demo"></p><br><br>
+<input type="submit" align="center" value="New Window" name="submit" onclick="openRequestedPopup()"><br><br><br>
+First Name : <input type="text" id="t1"><br><br>
+Last Name: <input type="text" id="t2"><br><br>
+<input type="submit" onclick="calc()"><br><br><br>
+Enter Dollar to convert into Rupees: <br><br>
+<input type="submit" value="convert" onclick="cvrt()">
+<p id="pid">result</p>
+<br>
+<TABLE BORDER="1">
+<CATPION>Rowspan and Colspan Table</CAPTION>
+<TR>
+  <TH width=100>Fruit</TH>
+  <TH width=100>Color</TH>
+  <th width=100> New col </th>
+</TR>
+
+<TR height=50 valign=center align=center>
+  <TD>Apple</TD>
+  <TD colspan=2>Merged</TD>
+</TR>
+
+<TR align=center>
+  <TD>Avocado</TD>
+  <TD>Green</TD>
+<td rowspan=2 vlaign=middle > Merged </td>
+</TR>
+
+<TR>  
+  <TD>Watermelon</TD>
+  <TD>Pink</TD>
+  
+</TR>
+</TABLE>
+
+
+
+
+
+  
+  
+    
+</body>
+</center>
+</html>
