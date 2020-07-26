@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Pass word Validation</title>
+	<script type="text/javascript">
+		function passvalid(){
+			var x=document.getElementById('pass').value;
+			if(x.length<8)
+			{
+				document.getElementById('pid').innerHTML="Password should be atleast 8 characters";
+				document.getElementById('pid').style.color="Red";
+				
+			}
+			else if (x.search(/[0-9]/)==-1) {
+				document.getElementById('pid').innerHTML="Password should contain atleast 1 numeric value";
+				document.getElementById('pid').style.color="Red";
+				
+
+			}
+			else if (x.search(/[a-z]/)==-1) {
+				document.getElementById('pid').innerHTML="Password should contain atleast 1 lowercase character";
+				document.getElementById('pid').style.color="Red";
+				
+			}
+			else if (x.search(/[A-Z]/)==-1) {
+				document.getElementById('pid').innerHTML="Password should contain atleast 1 uppercase character";
+				document.getElementById('pid').style.color="Red";
+				
+			}
+			else if (x.search(/[`\~\!\@\#\$\%\^\&\*\(\)\-\_\=\+\[\{\]\}\|\;\:\'\"\,\<\.\>\?]/)==-1) {
+				document.getElementById('pid').innerHTML="Password should contain atleast 1 special character";
+				document.getElementById('pid').style.color="Red";
+				
+			}
+			else
+			{
+				document.getElementById('pid').innerHTML="Success";
+				document.getElementById('pid').style.color="green";
+				
+			}
+
+
+
+
+
+
+		}
+		function rev()
+		{
+			var x=document.getElementById('txt').value;
+			for(i=x.length-1;i>=0;i--)
+			{
+				console.log(x.charAt(i));
+				document.write(x.charAt(i));
+			}
+		}
+
+
+
+	</script>
+</head>
+<body>
+	
+		<p id="pid"></p>
+	<input type="password" id="pass" placeholder="Password">
+	<input type="submit" value="Validate" onclick="passvalid()" ><br><br>
+	<input type="text" id="txt">
+	<input type="submit" value="reverse" onclick="rev()">
+
+
+
+
+
+</body>
+</html>
