@@ -1,0 +1,50 @@
+Task - use table level constraints
+
+TimeTable
+-- day
+-- session (key word)
+--- room_no
+---- faculty_name
+--- sem
+-- subject
+
+
+day   sess   room   faculty    sem   subject
+mon   1       r1            raj           1         java
+mon   1      r2             ram         1          jee  // invalid stud busy
+
+mon   1      r2             ram         3         JAVA   valid
+mon   1      r1             john         5        DBMS   invalid
+mon   2      r1             john         5        DBMS   valid
+tue     1      r1             john         5        DBMS   valid
+
+
+
+solution 
+
+table creation
+
+create table timetable
+(
+day varchar(10),
+sess int,
+roomno varchar(10),
+faculty varchar(20),
+sem int,
+subject varchar(10),
+constraint qqu primary key(day,sess,roomno),
+constraint uqq unique(day,sess,faculty),
+constraint quu unique(day,sess,sem)
+
+);
+
+
+insert into timetable values('mon',1,'r1','raj',1,'java');
+insert into timetable values('mon',1,'r2','ram',1,'jee');
+insert into timetable values('mon',1,'r2','ram',3,'java');
+insert into timetable values('mon',1,'r1','john',5,'dbms');
+insert into timetable values('mon',2,'r1','john',5,'dbms');
+insert into timetable values('tue',1,'r1','john',5,'dbms');
+
+
+

@@ -1,0 +1,99 @@
+
+Task
+
+create table Employee with the following attributes and constraints
+
+EmpFName
+EmpMName
+EmpLastName
+EmpAge -> must be a positive number and less than 50
+EmpCity -> should begin with letter B (Ex: Bangalore , Bijapur)
+EmpDesignation -> can be any manager (Ex sales manager, acc manager)
+EmpId -> primary key must have 5 chars (EX: emp01,emp02,emp03)
+empDOB -> must be a date(data type) column
+
+-> insert 5 employee details
+
+->update any employe and change city name
+
+-> delete an employee
+ 
+-> delete all employees
+
+->get back all the employees deleted in previous delete
+
+-> display employee  name and dob in(DD-MM-YYYY) fromat
+
+-> display employee  name in following format  
+       Fname   Mname    lname
+Ex:  Sachin  Ramesh  Tendulkar
+should be displayed as  S.R.Tendulkar  
+
+
+
+solution
+
+
+create table Employee
+(
+EmpFName varchar(20),
+EmpMName varchar(20),
+EmpLastName varchar(20),
+EmpAge int check(EmpAge between 0 and 49),
+EmpCity varchar(20) check(EmpCity like 'b%'),
+EmpDesignation varchar(20) check(EmpDesignation like '%manager%'),
+EmpId char(5) primary key,
+empDOB date,
+constraint cktest check(length(empid)=5)
+);
+
+insert into employee values('sachin','ramesh','tendulkar','45','bengaluru','salesmanager','emp01','24-apr-1973');
+
+insert into employee values('rohit','gurunath','sharma','32','bhopal','accmanager','emp02','30-apr-1987');
+
+insert into employee values('mahendra','singh','dhoni','36','bhojpur','marketingmanager','emp03','07-jul-1981');
+
+insert into employee values('sai','praneeth','m','21','bengaluru','accmanager','emp04','18-oct-1999');
+
+insert into employee values('surya','teja','a','21','bengal','salemanager','emp05','11-sep-1999');
+
+
+select * from employee;
+
+
+update employee set empcity='bengal' where empid='emp01';
+
+
+select * from employee;
+
+
+commit;
+
+
+delete from employee where empid='emp05';
+
+
+select * from employee;
+
+
+delete from employee;
+
+
+select * from employee;
+
+
+
+rollback;
+
+
+select * from employee;
+
+
+select empfname,empmname,emplastname,to_char(empdob,'DD/MM/YYYY') from employee;
+
+
+
+select substr(empfname,1,1) ||'.'||substr(empmname,1,1)||'.'||emplastname as FullName from employee where empid='emp01';
+
+
+

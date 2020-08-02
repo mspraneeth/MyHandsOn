@@ -1,0 +1,22 @@
+1) create table stock
+	(
+	stock1 int primary key,
+	stock2 int,
+	stock3 int,
+	stock4 varchar(20),
+	stock5 varchar(20));
+
+  create table sales
+	(
+	sale1 int primary key,
+	stock1 int references stock(stock1),
+	sale2 int,
+	sale3 varchar(20),
+	sale4 varchar(20));
+
+
+2) display current date and time  -  SELECT TO_CHAR(SYSDATE, 'DD-MON-YYYY HH:MI:SS') FROM dual;
+   display current date     -  SELECT TO_CHAR(SYSDATE) FROM dual;
+   display current date in DD/MM/YYYY format  - select to_char(SYSDATE,'DD/MM/YYYY') from dual;
+   display display current day as Tuesday  -  select to_char(sysdate, 'day') from dual;
+   display date after 10 days from the current date -  select to_char(sysdate+10, 'dd-mm-yyyy') from dual;
