@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js
+"></script>
+
+	<script type="text/javascript">
+		$(function(){
+			$("#hide").click(
+				function(){$('p').hide()}
+				
+
+
+				)
+		}
+
+			)
+		$(function(){
+			$("#hide1").click(
+				function(){$('p.abc').hide()}
+				
+
+
+				)
+		}
+
+			)
+		$(function(){
+			$("#fade").click(
+				function(){$('#div1').fadeIn()
+				$("#div2").fadeIn("slow");
+    			$("#div3").fadeIn(3000);
+
+
+			}
+				
+
+
+				)
+		}
+
+			)
+		$(function(){
+			$("#slideup").click(
+				function(){$('#txt1').slideUp(1000);
+			}
+				
+
+
+				)
+		}
+
+			)
+		$(function(){
+			$("#slidedown").click(
+				function(){$('#txt1').slideDown(1000);
+			}
+				
+
+
+				)
+		}
+
+			)
+		$(function(){
+			$("#txt1").click(
+				function(){$('#txt1').slideToggle(1000);
+			}
+				
+
+
+				)
+		}
+
+			)
+		
+		
+		
+		
+
+
+		
+
+
+	</script>
+	
+</head>
+<body>
+	
+	
+	
+	<p id="pid1"> this is 1st paragraph </p>
+	<p id="pid2"> this is 2nd paragraph </p>
+	<p id="pid3" class="abc"> this is 3rd paragraph with class</p>
+	<p id="pid4" class="abc"> this is 4th paragraph with class</p>
+	<div id="did1"> this is div tag1 to fade</div>
+	<div id="did2">this is div tag2 to fade</div>
+	<div id="did3">this is div tag3 to fade</div>
+	<input type="submit" value="hide All p tags" id="hide">
+	<input type="submit" value="hide All p tags with class" id="hide1">
+	<input type="submit" value="fade" id="fade">
+	<div id="div1" style="width:50px;height:50px;display:none;background-color:aqua;"></div><br>
+<div id="div2" style="width:50px;height:50px;display:none;background-color:green;"></div><br>
+<div id="div3" style="width:50px;height:50px;display:none;background-color:yellow;"></div><br><br>
+<input type="text" id="txt1"><br><br>
+<input type="submit" id="slideup" value="slide up"><br><br>
+<input type="submit" id="slidedown" value="slide down"><br><br>
+
+
+
+</body>
+</html>
+
