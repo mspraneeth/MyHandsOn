@@ -1,0 +1,219 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>JFS_Assessment 01</title>
+
+<style type="text/css">
+body
+{
+background-color: #2E1B1B;
+background-repeat: no-repeat;
+background-size: cover;
+opacity: 0.6;
+}
+
+.myButton {
+	box-shadow:inset 0px 39px 0px -24px #e67a73;
+	background-color:#e4685d;
+	border-radius:4px;
+	border:1px solid #ffffff;
+	display:inline-block;
+	cursor:pointer;
+	color:#ffffff;
+	font-family:Arial;
+	font-size:15px;
+	padding:6px 15px;
+	text-decoration:none;
+	text-shadow:0px 1px 0px #b23e35;
+}
+.myButton:hover {
+	background-color:#eb675e;
+}
+.myButton:active {
+	position:relative;
+	top:1px;
+}
+
+
+</style>
+<script type="text/javascript">
+
+types=["Graduation","Post Graduation"];
+
+
+function filldd()
+{
+var typeDD=document.getElementById('type');
+for(i=0;i<types.length;i++){
+var ele=document.createElement('option');
+ele.text=types[i];
+typeDD.add(ele,i+1)
+}
+}
+
+
+   data=[["B.Tech","B.Com","B.SC","Bachelor of Arts"],['Masters in arts','M.Tech','Masters in Science']
+   ];
+
+
+function fillData()
+{
+var typeDDN=document.getElementById('type');
+  var selectedIdx= typeDDN.selectedIndex;
+
+console.log(selectedIdx);
+
+var dataDD=document.getElementById('dd');
+
+dataDD.innerText=null;
+
+
+for(i=0;i<data[selectedIdx-1].length;i++)
+{
+
+var ele=document.createElement('option');
+ele.text=data[selectedIdx-1][i];
+
+dataDD.add(ele,i+1)
+
+
+}
+
+
+}
+function alphabets(e){
+if(!( e.which >= 65 && e.which<=90 || e.which >=97 && e.which<= 122))
+{
+e.preventDefault(); 
+}
+}
+
+
+
+
+function dobValidate() {
+var d=new Date();
+var yy=d.getFullYear()-18;
+var mon=d.getMonth()+1;
+var dd=d.getDate();
+
+if(mon<10){
+mon='0'+mon;
+}
+if(dd<10){
+dd='0'+dd;
+}
+document.getElementById('dob').max=yy+'-'+mon+'-'+dd;
+
+}
+
+
+function check()
+{
+	var alpha=document.getElementById('alpha').value;
+	var email=document.getElementById('email').value;
+	var t1=document.getElementById('t1').value;
+	var t2=document.getElementById('t2').value;
+	var type=document.getElementById('type').value;
+	var dd=document.getElementById('dd').value;
+	dob=document.getElementById('dob').value;
+	
+	if (alpha=="" || email==""|| t1==""|| t2==""|| type=="select type"|| dd=="select" || dob=="") 
+	{
+		alert("All fields should be entered")
+		return false;
+
+	}
+	if (t1!=t2) {
+		window.alert("Password and confirm password should be same");
+		return false;
+	}
+	if(!(email.endsWith('.com')))
+			{
+				alert("Enter valid email address")
+				return false;
+			}
+	else
+	{
+		document.getElementById('pid').innerHTML="Registration Completed";
+		document.getElementById('pid').style.color="#0BF229";
+		return true;
+	}
+	
+
+
+}
+
+
+</script>
+
+</head>
+
+<body onload="filldd()">
+<center>
+<h1 style="color: red"> Employee Registration Form</h1>
+
+<div style="height: 500px;width: 300px; background-color: #66759B"> 
+<table  align="center" width="50%">
+
+<tr>
+
+<td> <input type="text" placeholder="Full Name" id="alpha" onkeypress="alphabets(event)"> </td>
+</tr><br>
+<tr>
+<td> <input type="email" placeholder="Email Address" id="email"> <br></td>
+</tr>
+
+
+
+<tr>
+<td> <input type="password" placeholder="Password" id="t1"> </td>
+
+</tr>
+<tr>
+<td> <input type="password" placeholder="Confirm Password" id="t2"> </td>
+</tr>
+
+
+
+<tr>
+<td> DOB <br>
+	<input type="date" id="dob" onclick="dobValidate()"> </td>
+</tr>
+
+
+<tr>
+<td>
+	Educational Details <br>
+ 
+<select id="type" onchange="fillData()">
+	<option>select type</option>
+</select>
+<br>
+<select id="dd">
+<option>select</option>
+
+</select>
+
+
+
+
+
+
+</td>
+</tr>
+</table>
+
+<br>
+<br>
+
+<input type="submit" value="register" onclick="return check()" class="myButton">
+
+<p id="pid"></p>
+
+</center>
+<div>
+</body>
+
+
+</html>
