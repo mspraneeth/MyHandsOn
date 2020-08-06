@@ -1,0 +1,117 @@
+-> write a java program to accept 2 values from c,d line and concat them
+
+
+public class cmddemo {
+	public static void main(String args[])
+	{
+	
+		System.out.println("Welcome to "  + args[0] + " " + args[1]+" "+ args[2]);
+		System.out.println(Integer.parseInt(args[3])+Integer.parseInt(args[4]));
+	}
+
+}
+
+-> write a java program to accept to number from cmd line and add the numbers
+
+public class add {
+
+	public static void main(String[] args) {
+		System.out.println(Integer.parseInt(args[0]) + Integer.parseInt(args[1]));
+	}
+
+}
+
+
+
+-> create a java program to check if the character is in small case or capital case
+
+
+public class check 
+{
+	public static void main(String args[])
+	{
+		char c='w';
+		if(!(c>=65&&c<=90 || c>=97&&c<=122 ))
+		{
+			System.out.println("Invalid Alphabet");
+		}
+		else {
+		if(c<=90&&c>=65)
+			System.out.println("Charcter is in Capital Case" +" " +c);
+		else 
+			System.out.println("Charcter is in Small Case" +" "+c);
+		}
+		
+			
+	}
+
+
+
+-> create a java program to check the number entered by user is odd or even
+
+
+public class oddeve {
+	public static void main(String args[])
+	{
+		int n=10;
+		if(n%2==0)
+		{
+			System.out.println("Even No "+ n);
+			
+		}
+		else
+			System.out.println("Odd No "+ n);
+	}
+
+}
+
+-> create a java program to convert the given dollar into rupees
+
+
+public class conversion {
+	public static void main (String args[] )
+	{
+		int dollar=10;
+		double rupee=dollar*74.84;
+		System.out.println("Money in rupees after conversion =" +rupee);
+	}
+
+}
+
+
+-> write a java program to accept 2 cmd line args
+and display the output in the following format
+
+Example 1.
+args1-> DXC  
+args2-> JAVA
+
+output -> welcome to JAVA training @ DXC
+
+Example 2.
+args1-> NIIT  
+args2-> PYTHON
+
+output -> welcome to PYTHON training @ NIIT
+
+Example 3.
+args1-> HP  
+args2-> CCNA
+
+output -> welcome to CCNA training @ HP
+
+
+
+public class CmdLineArgs {
+
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+		System.out.println("WELCOME TO "+args[1]+" TRAINING @ "+args[0]);
+		System.out.println("WELCOME TO "+args[3]+" TRAINING @ "+args[2]);
+		System.out.println("WELCOME TO "+args[5]+" TRAINING @ "+args[4]);
+
+	}
+
+}
+
+

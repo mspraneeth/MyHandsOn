@@ -1,0 +1,195 @@
+-> write a java program to print the table of given num
+Ex : input 2
+output
+ 2 x 1= 2
+ 2 x 2= 4
+ 2 x 3= 6 and so on till 2 x 10 =20
+
+
+
+
+
+public class Table {
+	public static void main(String[] args) {
+		int num=2;
+		for(int i=1;i<=10;i++)
+		{
+			System.out.println(num+" * "+i+" = "+(num*i));
+		}
+	}
+
+}
+
+
+
+-> write a java program which loops for 26 times and print A-Z
+
+output :-> A ,B ,C,D,E ........ till Z
+
+
+
+public class AlphabetsLooping {
+	public static void main(String[] args) {
+		char c;
+		int ctr=0;
+
+        for(c = 'A'; c <= 'Z'; ++c)
+        {
+            System.out.print(c + " ");
+            ctr++;
+        }
+        System.out.println(ctr);
+	}
+
+}
+
+
+
+
+--> in the below class without changing the data type of the variable
+print the output as 4,3,2,1 which is actually a reverse of the given number
+NOTE : type of x is int do not change it
+
+class MyNum{
+public static void main(String args){
+int x=1234;
+
+//write you code here
+}
+       }
+
+Hint: keep dividing the number by 10
+
+
+
+
+public class MyNum {
+public static void main(String[] args) {
+	int x=1234;
+	int rem=0;
+	while(x!=0)
+	{
+		rem=x%10;
+		System.out.println(rem);
+		x=x/10;
+	}
+	
+	
+	
+}
+}
+
+
+
+--> write a java program to count the number of ZEROS in the given number
+Example :
+input : 120050
+output : 3 zero's
+
+input : 1000024
+output: 4 zero's
+
+
+
+public class CountZeros {
+	public static void main(String[] args) {
+		int x=1000024;
+		int rem=0;
+		int ctr=0;
+		while(x!=0) {		
+		rem=x%10;
+		if(rem==0)
+		{
+			ctr++;
+		}
+		x=x/10;
+		}
+		System.out.println(ctr);
+		
+	}
+
+}
+
+
+
+
+--> write a java program to count the number of ZEROS at the tail of the given number
+
+Example :
+input : 120050
+output : 1 zero's
+
+input : 1000024
+output: no zero's found
+
+input : 10024000
+output: 3 zero's
+
+
+
+
+public class ZeroTail {
+
+	public static void main(String[] args) {
+		int x=10024;
+		int rem=0;
+		int ctr=0;
+		while(x!=0) {
+			rem=x%10;
+			if(rem!=0)
+			{
+				break;
+			}
+			ctr++;
+			x=x/10;
+		}
+		System.out.println(ctr);
+
+	}
+
+}
+
+
+
+
+
+-> create a class called customer with 6 attributes including 2 static         attributes
+     -> initilize all the attributes in proper way
+     -> display the details of customers
+NOTE: allow the user to create object with or without initilizing the values
+
+
+
+public class Customer {
+	
+	int cid;
+	String cname;
+	int refnum;
+	int age;
+	static int pronum;
+	static String proname;
+	
+	Customer(){
+		cid=1;
+		cname="raj";
+		refnum=101;
+		age=25;
+		
+		
+	}
+	
+	static {
+		pronum=1011171;
+		proname="machine";
+	}
+	void disp() {
+		System.out.println(cid+" "+cname+" "+age+" "+refnum+" "+pronum+" "+proname);
+	}
+
+	public static void main(String[] args) {
+		Customer customer =new Customer();
+		customer.disp();
+
+	}
+
+}
