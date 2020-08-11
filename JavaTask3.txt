@@ -1,0 +1,65 @@
+
+public class MyReplace {
+	
+	String replaceFirst(String var,char find,char replace)
+	{
+		char[] arr=var.toCharArray();
+		for(int i=0;i<var.length();i++)
+		{
+			if(arr[i]==find)
+			{
+				arr[i]=replace;
+				break;
+			}
+		}
+		String manStr=new String(arr);
+		return manStr;
+	}
+	
+	String replaceLast(String var,char find,char replace)
+	{
+		char[] arr=var.toCharArray();
+		for(int i=var.length()-1;i>=0;i--)
+		{
+			if(arr[i]==find)
+			{
+				arr[i]=replace;
+				break;
+			}
+		}
+		String manStr=new String(arr);
+		return manStr;
+	}
+	
+	boolean myEquals(char char1,char char2)
+	{
+		if(char1==char2 || char1-32==char2 || char1+32==char2)
+		{
+			return true;
+		}
+		
+		else
+		{
+			return false;
+		}
+		
+		
+		
+	}
+	
+	
+	
+
+	public static void main(String[] args) {
+		
+		MyReplace myreplace=new MyReplace();
+		String replaceFirst=myreplace.replaceFirst("testdata",'t','w');
+		String replaceLast=myreplace.replaceLast("testdata",'a','w');
+		boolean myEquals=myreplace.myEquals('a','A');
+		System.out.println("After replacing 1st occuring char with given char "+replaceFirst);
+		System.out.println("After replacing last occuring char with given char "+replaceLast);
+		System.out.println("comparing the given chars is "+myEquals);
+
+	}
+
+}

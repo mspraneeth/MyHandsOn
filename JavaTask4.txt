@@ -1,0 +1,145 @@
+
+public class Day5Task {
+	
+	String hasUpper(String data)
+	{
+		String c=new String();
+		char[] arr=data.toCharArray();
+		for(int i=0;i<arr.length;i++)
+		{
+			if(arr[i]>='A'&& arr[i]<='Z')
+			{
+				c="yes";
+				break;
+			}
+			else
+			{
+				c="no";	
+			}
+			
+		}
+		return c;
+	}
+	
+	boolean isNum(String data)
+	{
+		
+		char[] arr=data.toCharArray();
+		for(int i=0;i<arr.length;i++)
+		{
+			if(arr[i]>='0' && arr[i]<='9')
+			{
+				return true;
+				
+			}
+			
+		}
+		return false;
+		
+	}
+	
+	
+	boolean isCapsOnly(String data)
+	{
+		int c=0;
+		char[] arr=data.toCharArray();
+		for(int i=0;i<arr.length;i++)
+		{
+			if(arr[i]>='A' && arr[i]<='Z')
+			{
+				c++;
+			}
+		}
+		if(c==arr.length)
+		{
+			return true;
+		}
+		else
+		{
+			return false;
+		}
+	}
+	
+	
+	int countCaps(String data)
+	{
+		int c=0;
+		char[] arr=data.toCharArray();
+		for(int i=0;i<arr.length;i++)
+		{
+			if(arr[i]>='A'&& arr[i]<='Z')
+			{
+				c++;
+			}
+		}
+		return c;
+	}
+	
+	
+	boolean isEqual(String str1,String str2)
+	{
+		char[] arr1=str1.toCharArray();
+		char[] arr2=str2.toCharArray();
+		int len1=arr1.length;
+		int len2=arr2.length;
+		int i=0;
+		if(len1 != len2)
+		{
+			return false;
+		}
+		else
+		{
+		while(i<len1)
+		{
+			if(arr1[i]==arr2[i])
+			{
+				i++;
+			}
+			else
+			{
+				if(arr1[i]>='a' && arr1[i]<='z')
+				{
+					if(arr1[i]-32 != arr2[i])
+					{
+						return false;
+					}
+				}
+				else if(arr1[1]>='A' && arr1[i]<='Z')
+				{
+					if(arr1[i]+32 != arr2[i])
+					{
+						return false;
+					}
+				}
+				
+				i++;
+				
+			}
+		}
+		
+		return true;
+		
+		}
+		
+	}
+	
+	
+	
+
+	public static void main(String[] args) {
+		Day5Task dt=new Day5Task();
+		String hasupper=dt.hasUpper("heLlo");
+		System.out.println("Any Uppercase "+hasupper);
+		boolean isnum=dt.isNum("hell32o");
+		System.out.println("Any Number "+isnum);
+		boolean iscapsonly=dt.isCapsOnly("HELLO");
+		System.out.println("Only UpperCase "+iscapsonly);
+		int countcaps=dt.countCaps("HeLlo");
+		System.out.println("Count Number of Caps "+countcaps);
+		boolean isequal=dt.isEqual("hello","HELLO");
+		System.out.println("compare Two Strings "+isequal);
+		
+
+	}
+
+}
