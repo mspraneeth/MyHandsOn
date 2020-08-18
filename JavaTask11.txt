@@ -1,0 +1,36 @@
+class TicketNotFoundException extends Exception{
+
+public TicketNotFoundException() {
+super("Out of Stock");
+}
+}
+
+
+public class BookMyShow {
+	
+	static int available=10;
+	
+	void bookTicket(int NoOfTickets)throws TicketNotFoundException
+	{
+	if(NoOfTickets > available) {
+	throw new TicketNotFoundException();}
+
+	else {
+		available=available-NoOfTickets;
+	System.out.println(NoOfTickets +" tickets Booked enjoy the show available tickets "+available);}
+	}
+
+	public static void main(String[] args) {
+		BookMyShow b=new BookMyShow();
+		BookMyShow b1=new BookMyShow();
+		try {
+			b.bookTicket(6);
+			b.bookTicket(2);			
+			b1.bookTicket(1);
+			b.bookTicket(2);
+			} catch (TicketNotFoundException e) {
+			e.printStackTrace();
+			}
+
+	}
+}

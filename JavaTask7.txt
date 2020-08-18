@@ -1,0 +1,129 @@
+
+public class Task7 {
+	
+	String reverseString(String data) {
+		int j=0;
+		char[] arr = data.toCharArray();
+		char[] arr1 = new char[arr.length];
+		for (int i = arr.length - 1; i >= 0; i--) {
+			arr1[j]=arr[i];
+			j++;
+
+			
+		}
+		String manstr = new String(arr1);
+		return manstr;
+	}
+	
+	String onlyCaps(String data) {
+		
+		char[] arr=data.toCharArray();
+		char[] arr1=new char[arr.length];
+		for(int i=0;i<data.length();i++) {
+			if(arr[i]>='A'&& arr[i]<='Z') {
+				
+				arr1[i]=arr[i];
+			}
+			else if(arr[i]>='a'&& arr[i]<='z'){
+				arr1[i]=(char)(arr[i]-32);
+			}
+			
+		}
+		String manstr=new String(arr1);
+		
+		return manstr;
+		
+	}
+	
+	String onlySmall(String data) {
+		
+		char[] arr=data.toCharArray();
+		char[] arr1=new char[arr.length];
+		for(int i=0;i<data.length();i++) {
+			if(arr[i]>='a'&& arr[i]<='z') {
+				
+				arr1[i]=arr[i];
+			}
+			else if(arr[i]>='A'&& arr[i]<='Z'){
+				arr1[i]=(char)(arr[i]+32);
+			}
+			
+		}
+		String manstr=new String(arr1);
+		
+		return manstr;
+		
+	}
+	
+String stringToggle(String data) {
+		
+		char[] arr=data.toCharArray();
+		char[] arr1=new char[arr.length];
+		for(int i=0;i<data.length();i++) {
+			if(arr[i]>='a'&& arr[i]<='z') {
+				
+				arr1[i]=(char)(arr[i]-32);
+			}
+			else if(arr[i]>='A'&& arr[i]<='Z'){
+				arr1[i]=(char)(arr[i]+32);
+			}
+			
+		}
+		String manstr=new String(arr1);
+		
+		return manstr;
+		
+	}
+	
+	String capsPosition(String data) {
+		
+		int j=0;
+		char[] arr = data.toCharArray();
+		char[] arr1 = new char[arr.length];
+		for (int i = arr.length - 1; i >= 0; i--) {
+			arr1[j]=arr[i];
+			j++;
+
+			
+		}
+		
+		for(int i=0;i<arr1.length;i++) {
+			if(arr1[i]>='A'&& arr1[i]<='Z') {
+				arr1[i]=(char)(arr1[i]+32);
+			}
+		}
+		
+		for(int i=0;i<arr.length;i++) {
+			
+			if(arr[i]>='A' && arr[i]<='Z') 
+			{
+				arr1[i]=(char)(arr1[i]-32);
+			}
+			
+			
+		}
+		String manstr=new String(arr1);
+		
+		return manstr;
+	}
+	
+	
+	
+	
+	
+	public static void main(String[] args) {
+		
+		Task7 task7=new Task7();
+		String reverString=task7.reverseString("Hello");
+		System.out.println(reverString);
+		String onlyCaps=task7.onlyCaps("HeLlo");
+		System.out.println(onlyCaps);
+		String onlySmallString=task7.onlySmall("HeLlo");
+		System.out.println(onlySmallString);
+		String stringtoggle=task7.stringToggle("HeLlO");
+		System.out.println(stringtoggle);
+		String capsPosition=task7.capsPosition("ThinKing");
+		System.out.println(capsPosition);
+	}
+
+}

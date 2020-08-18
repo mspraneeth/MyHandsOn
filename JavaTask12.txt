@@ -1,0 +1,74 @@
+
+public class Book {
+	int bookid;
+	String title;
+	String author;
+	public Book(int bookid, String title, String author) {
+		super();
+		this.bookid = bookid;
+		this.title = title;
+		this.author = author;
+	}
+	public int getBookid() {
+		return bookid;
+	}
+	public void setBookid(int bookid) {
+		this.bookid = bookid;
+	}
+	public String getTitle() {
+		return title;
+	}
+	public void setTitle(String title) {
+		this.title = title;
+	}
+	public String getAuthor() {
+		return author;
+	}
+	public void setAuthor(String author) {
+		this.author = author;
+	}
+	@Override
+	public String toString() {
+		return "Book [bookid=" + bookid + ", title=" + title + ", author=" + author + "]";
+	}
+	
+	void display() {
+		
+		System.out.println("Book ID is "+bookid+" Title is "+title+" Author is "+author);
+	}
+
+}
+
+--------------------------------------------------------------------------------
+
+import java.util.HashSet;
+import java.util.Iterator;
+
+public class BookCollection {
+
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+		HashSet<Book> hsb=new HashSet<Book>();
+		Book book1=new Book(111,"c programming","bala guru swami");
+		Book book2=new Book(121,"core java","Cay S. Horstmann");
+		Book book3=new Book(131,"Effective java", "Joshua Bloch");
+		Book book4=new Book(141,"Python Crash Course","Eric Matthews");
+		Book book5=new Book(151,"A Byte of Python","C.H. Swaroop");
+		
+		
+		hsb.add(book1);
+		hsb.add(book2);
+		hsb.add(book3);
+		hsb.add(book4);
+		hsb.add(book5);
+		
+		Iterator<Book> itr=hsb.iterator();
+		
+		while(itr.hasNext())
+		{
+		itr.next().display();
+		}
+
+	}
+
+}

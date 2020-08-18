@@ -1,0 +1,46 @@
+
+public class StudentDemo {
+	
+	int stdid;
+	String name;
+	public StudentDemo(int stdid, String name) {
+		super();
+		this.stdid = stdid;
+		this.name = name;
+	}
+	
+	void display() {
+		System.out.println("stud id "+stdid+" stud name "+name);
+	}
+
+	
+
+	
+
+
+}
+
+
+-----------------------------------------------------------------
+
+import java.util.Vector;
+
+public class StudentCollectionTask9 {
+	
+	Vector<Integer> marks=new Vector<Integer>();
+	void display() {
+		System.out.println(marks);
+	}
+	
+	
+public static void main(String[] args) {
+	
+	StudentCollectionTask9 sc=new StudentCollectionTask9();
+	sc.marks.add(23);
+	sc.marks.add(45);
+	sc.marks.add(90);
+	sc.marks.add(75);
+	sc.display();
+	
+}
+}
