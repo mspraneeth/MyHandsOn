@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+<head>
+<script type="text/javascript">
+
+function test(e)
+{
+
+
+if(!( e.which >= 65 && e.which <=90 ))//e.which is actual takes the asci values
+{
+e.preventDefault(); //a-97 , A - 65, preventDefault is a predefined function where it doesnt allow to print
+
+}
+
+}
+
+</script>
+
+</head>
+
+<body>
+
+<input type="text" id="mytxt" onkeypress ="test(event)"> <!--onkeypress can differentiate btw caps nd small chars, onkeydown doesnt differentiate-->
+
+
+</body>
+
+</html>

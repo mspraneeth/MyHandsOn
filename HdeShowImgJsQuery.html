@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js">
+		
+	</script>
+	<script type="text/javascript">
+		$(function(){
+			$("#hide").click(
+				function(){$('#ig').hide()} 
+
+				)
+		}
+
+			)
+
+		$(function(){
+			$("#show").click(
+				function(){$('#ig').show()}
+
+				)
+		}
+
+			)
+		$(function(){
+			$("#toggle").click(
+				function(){$('#ig').toggle()}
+
+				)
+		}
+
+			)
+		
+
+
+
+	</script>
+<!-- # will  be used in jquery to get elements by id
+for tags we use direct tag EX: 'p','div'
+for class variable we use .classname to import
+-->
+
+
+</head>
+<body>
+	<img src="lion.jpg" width="200px" height="200px" id="ig" class="a">
+	<input type="submit" id="hide" value="hide">
+	<input type="submit" id="show" value="show">
+	<input type="submit" id="toggle" value="Toggle">
+</body>
+</html>
