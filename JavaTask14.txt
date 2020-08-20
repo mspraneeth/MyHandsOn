@@ -1,0 +1,202 @@
+package com.mytask.colldemo;
+
+public class StudentInputData {
+	
+	private int Rollno;
+	private int clgid;
+	private String name;
+	private String gender;
+	private int sem;
+	private int marks;
+	public StudentInputData(int rollno, int clgid, String name, String gender, int sem, int marks) {
+		super();
+		Rollno = rollno;
+		this.clgid = clgid;
+		this.name = name;
+		this.gender = gender;
+		this.sem = sem;
+		this.marks = marks;
+	}
+	public int getRollno() {
+		return Rollno;
+	}
+	public void setRollno(int rollno) {
+		Rollno = rollno;
+	}
+	public int getClgid() {
+		return clgid;
+	}
+	public void setClgid(int clgid) {
+		this.clgid = clgid;
+	}
+	public String getName() {
+		return name;
+	}
+	public void setName(String name) {
+		this.name = name;
+	}
+	public String getGender() {
+		return gender;
+	}
+	public void setGender(String gender) {
+		this.gender = gender;
+	}
+	public int getSem() {
+		return sem;
+	}
+	public void setSem(int sem) {
+		this.sem = sem;
+	}
+	public int getMarks() {
+		return marks;
+	}
+	public void setMarks(int marks) {
+		this.marks = marks;
+	}
+	
+	public StudentInputData() {
+		// TODO Auto-generated constructor stub
+	}
+	@Override
+	public String toString() {
+		return "StudentInputData [Rollno=" + Rollno + ", clgid=" + clgid + ", name=" + name + ", gender=" + gender
+				+ ", sem=" + sem + ", marks=" + marks + "]";
+	}
+	
+	
+
+}
+
+
+---------------------------------------------------------------------------------------------------------------------------
+
+
+package com.mytask.colldemo;
+
+import java.io.BufferedReader;
+import java.io.FileNotFoundException;
+import java.io.FileReader;
+import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
+
+public class StudentMain {
+	
+	void replaceComma() {
+		
+		try {
+			FileReader rd= new FileReader("data.txt");
+			BufferedReader brd =new BufferedReader(rd);
+			String str;
+			while((str=brd.readLine())!=null) {
+				
+				String[] str1=str.split(",");
+				for(String a:str1) {
+					System.out.print(a);
+					System.out.print("     ");
+				}
+				System.out.println();
+			}
+			
+			
+			
+		} catch (FileNotFoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		
+	}
+	
+	
+	List<StudentInputData> sid =new ArrayList<>();
+	void studentObjectCreation() {
+		
+		try {
+			FileReader rd= new FileReader("data.txt");
+			BufferedReader brd =new BufferedReader(rd);
+			String str;
+			brd.readLine();
+			while((str=brd.readLine())!=null) {
+				
+				str=str.trim();
+				String[] str1=str.split(",");
+				
+				
+				StudentInputData sd=new StudentInputData(Integer.parseInt(str1[0]),Integer.parseInt(str1[1]),str1[2],str1[3],Integer.parseInt(str1[4]),Integer.parseInt(str1[5]));
+				
+				sid.add(sd);
+				
+			}
+			
+			
+			
+			
+			
+		} catch (FileNotFoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		
+		
+		
+	}
+	
+	void displayStudentList() {
+		
+		for(StudentInputData std:sid) {
+		
+		System.out.println(std);
+		}
+	}
+	
+	
+	
+
+	public static void main(String[] args) {
+		
+		StudentMain studentMain=new StudentMain();
+		studentMain.replaceComma();
+		System.out.println("--------------------------------------------------------");
+		studentMain.studentObjectCreation();
+		studentMain.displayStudentList();
+		
+		
+		
+		
+		
+		
+		
+		
+
+	}
+
+}
+
+
+---------------------------------------------------------------------------------------------------------------------------------------------------------
+
+Rollno,clgid,name,gender,sem,marks
+ 1000,1,'Shikhar','Male',1,60
+ 1001,1,'Rohit','Male',5,70
+ 1002,1,'VIRAT','Male',1,65
+ 1003,1,'priya','FeMale',3,100
+ 1004,1,'neha','FeMale',3,90
+ 1005,2,'Rahul','Male',3,60
+ 1006,2,'MSD','Male',5,70
+ 1007,2,'Bumra','Male',1,65
+ 1008,2,'sakshi','FeMale',5,100
+ 1009,2,'katrina','FeMale',5,90
+ 1010,3,'Disha','FeMale',3,60
+ 1011,3,'Bhuvi','Male',1,70
+ 1012,3,'Shami','Male',3,65
+ 1013,3,'Sunny','Male',3,100
+ 1014,3,'Nisha','FeMale',5,90
+ 1015,3,'sara','FeMale',5,90
