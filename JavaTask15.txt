@@ -1,0 +1,219 @@
+package com.product.dbutil;
+
+import java.sql.Connection;
+import java.sql.DriverManager;
+
+public class DBConnection {
+	
+	public static Connection getConnect() {
+		
+		try{
+			Class.forName("oracle.jdbc.OracleDriver");
+			Connection con=DriverManager.getConnection("jdbc:oracle:thin:@192.168.0.5:1521:xe", "dxcfs","pass");
+			return con;
+			}
+			catch (Exception e) {
+			e.printStackTrace();
+			return null;
+			}
+			}
+	}
+
+
+
+-------------------------------------------------------------
+
+
+package com.product.model;
+
+public class Product {
+	
+	int productId;
+	String productName;
+	int productPrice;
+	public Product(int productId, String productName, int productPrice) {
+		super();
+		this.productId = productId;
+		this.productName = productName;
+		this.productPrice = productPrice;
+	}
+	public int getProductId() {
+		return productId;
+	}
+	public void setProductId(int productId) {
+		this.productId = productId;
+	}
+	public String getProductName() {
+		return productName;
+	}
+	public void setProductName(String productName) {
+		this.productName = productName;
+	}
+	public int getProductPrice() {
+		return productPrice;
+	}
+	public void setProductPrice(int productPrice) {
+		this.productPrice = productPrice;
+	}
+	
+	
+	public Product() {
+		
+	}
+	@Override
+	public String toString() {
+		return "Product [productId=" + productId + ", productName=" + productName + ", productPrice=" + productPrice
+				+ "]";
+	}
+	
+	
+
+}
+
+
+---------------------------------------------------------------
+
+package com.product.dao;
+
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+
+import com.product.dbutil.DBConnection;
+import com.product.model.Product;
+
+public class ProductDao {
+	
+	public String productInsert(Product product) {
+		
+		
+		try
+		{
+		Connection connection=DBConnection.getConnect();
+
+		String sql="insert into product values(?,?,?)";
+		PreparedStatement stat=connection.prepareStatement(sql);
+
+		stat.setInt(1,product.getProductId());
+		stat.setString(2,product.getProductName());
+		stat.setInt(3,product.getProductPrice());
+
+		int res= stat.executeUpdate();
+		if(res>0)
+		return "Product inserted";
+		else
+		return "product not found";
+		}
+		catch (Exception e) {
+		e.printStackTrace();
+		return "Exception "+e;
+		}
+
+
+	}
+	
+	
+	
+	public String deleteProduct(Product product) {
+		
+		
+		try {
+		Connection connection=DBConnection.getConnect();
+		
+		String sql="delete from product where productId=?";
+		
+		PreparedStatement stat=connection.prepareStatement(sql);
+		
+		stat.setInt(1,product.getProductId());
+		
+		int res= stat.executeUpdate();
+		
+		if(res>0) {
+			return "product deleted";
+			
+		}
+		else {
+			
+			return "product not found";
+		}
+		
+		
+		} 
+		
+		
+		catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+			return "Exception "+e;
+		}
+		
+	}
+	
+	
+	
+	public void diaplayProduct() {
+		
+		try {
+		Connection connection=DBConnection.getConnect();
+		
+		String sql="select * from product";
+		
+		PreparedStatement stat=connection.prepareStatement(sql);
+
+		ResultSet rs=stat.executeQuery();
+
+		if(rs.next()){
+		do{
+		System.out.println(rs.getInt("productID") + " "+rs.getString("productName")+" "+rs.getInt("productPrice"));
+		}
+		while(rs.next());
+		}
+		
+		else {
+			
+			System.out.println("no records found");
+		}
+	}
+		
+		catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+			
+		}
+	
+
+	}
+}
+
+---------------------------------------------------------------
+
+
+package com.product.service;
+
+import com.product.dao.ProductDao;
+import com.product.model.Product;
+
+public class ProductService {
+
+	public static void main(String[] args) {
+		
+		ProductDao productDao= new ProductDao();
+		Product product = new Product(111,"iphone",49999);
+		Product product1 = new Product(121,"samsung",39999);
+		Product product2 = new Product(131,"oneplus",29999);
+		Product product3 = new Product(141,"realme",19999);
+		productDao.productInsert(product);
+		productDao.productInsert(product1);
+		productDao.productInsert(product2);
+		productDao.productInsert(product3);
+		productDao.diaplayProduct();
+		System.out.println("--------------------------");
+		productDao.deleteProduct(product3);
+		productDao.diaplayProduct();
+		
+		
+
+	}
+
+}
