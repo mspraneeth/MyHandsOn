@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="ISO-8859-1">
+<title>Insert title here</title>
+</head>
+<body>
+<form method="post" action="DisplayEmployee">
+<center>
+<h1> EMPLOYEE REGISTRATION</h1> <br>
+Employee Name : <input type="text" name="empname"> <br>
+Employee Id : <input type="text" name="empid"> <br>
+Employee Address : <textarea name="empadd"></textarea> <br>
+Password :<input type="password" name=emppass> <br>
+confirm Password : <input type="password" name="empcnfpass"> <br>
+Gender : <br>
+Male <input type="radio" name="gender" value="male">
+Female <input type="radio" name="gender" value="female"><br>
+Languages Known : <br>
+English<input type="checkbox" name="languagesknown" value="English">
+Hindi<input type="checkbox" name="languagesknown" value="Hindi">
+Telugu<input type="checkbox" name="languagesknown" value="Telugu"> <br>
+DOB : <input type="date" name="dob"><br>
+Security Question:<select>
+<option name="secques">what is your pet name </option>
+<option name="secques">what is your favorite sport </option>
+</select> <br>
+Security Answer:<input type="text" name="secans"><br>
+<input type="submit" value="Register">
+
+
+</center>
+</form>
+</body>
+</html>
+
+------------------------------------------------
+
+package com.mysvr.demos;
+
+import java.io.IOException;
+import java.io.PrintWriter;
+
+import javax.servlet.ServletException;
+import javax.servlet.annotation.WebServlet;
+import javax.servlet.http.HttpServlet;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+
+@WebServlet("/DisplayEmployee")
+public class DisplayEmployee extends HttpServlet {
+	
+
+	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		
+		PrintWriter out=response.getWriter();
+		response.setContentType("text/html");
+		String data1 =request.getParameter("empname");
+		String data2 =request.getParameter("empid");
+		String data3 =request.getParameter("empadd");
+		String data4 =request.getParameter("emppass");
+		String data5 =request.getParameter("empcnfpass");
+		String data6 =request.getParameter("gender");
+		String data7 =request.getParameter("dob");
+		String data8 =request.getParameter("secans");
+		String[] arr=request.getParameterValues("languagesknown");
+		out.print("<h1> <font color= 'red'>EMPLOYEE REGISTRATION DETAILS </font> </h1>");
+		out.print(data1+"<br>");
+		out.print(data2+"<br>");
+		out.print(data3+"<br>");
+		out.print(data4+"<br>");
+		out.print(data5+"<br>");
+		out.print(data6+"<br>");
+		for(String a:arr)
+		{
+			out.print(a+"<br>");
+		}
+		out.print(data7+"<br>");
+		
+		out.print(data8);
+		
+		
+		
+		
+		
+		
+		
+
+	}
+	
+
+}
