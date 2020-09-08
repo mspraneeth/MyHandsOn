@@ -1,0 +1,186 @@
+package com.myboot.mvc;
+
+import java.util.ArrayList;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.RequestMapping;
+
+import com.myboot.mvc.dao.MyUsersDao;
+import com.myboot.mvc.model.MyUsers;
+
+@Controller
+public class HomeController {
+
+
+@Autowired
+MyUsersDao dao;
+
+@RequestMapping(value="/test")
+public String home()
+{
+dao.saveUser(new MyUsers("dxc11","dxcpass11"));
+return "home";
+}
+
+@RequestMapping(value="/display")
+public String display(Model model) {
+	ArrayList<MyUsers> users=dao.display();
+	model.addAttribute("users",users);
+	return "displaypage";
+}
+
+
+}
+----------------------------
+
+package com.myboot.mvc.dao;
+
+import java.util.ArrayList;
+
+import javax.transaction.Transactional;
+
+import org.aspectj.runtime.reflect.Factory;
+import org.hibernate.Query;
+import org.hibernate.Session;
+import org.hibernate.SessionFactory;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
+
+import com.myboot.mvc.model.MyUsers;
+
+@Component
+@Transactional
+public class MyUsersDao {
+
+
+@Autowired
+SessionFactory sessionFactor;
+
+
+public String saveUser(MyUsers myUsers)
+{
+try
+{
+Session session=sessionFactor.getCurrentSession();
+session.save(myUsers);
+
+return "user created";
+}
+catch (Exception e) {
+// TODO: handle exception
+e.printStackTrace();
+}
+
+return "cannot create user";
+
+}
+
+public ArrayList<MyUsers> display(){
+	
+	try {
+		Session session=sessionFactor.getCurrentSession();
+		Query query=session.createQuery("from MyUsers");
+		ArrayList<MyUsers> users=(ArrayList<MyUsers>)query.list();
+		return users;
+		
+	}
+	catch (Exception e) {
+		e.printStackTrace();
+	}
+	return null;
+}
+
+
+}
+
+-------------------------------
+
+package com.myboot.mvc.model;
+
+import javax.persistence.Entity;
+import javax.persistence.Id;
+
+@Entity
+public class MyUsers {
+
+@Id
+String userName;
+
+public MyUsers() {
+// TODO Auto-generated constructor stub
+}
+
+@Override
+public String toString() {
+return "MyUsers [userName=" + userName + ", password=" + password + "]";
+}
+public MyUsers(String userName, String password) {
+super();
+this.userName = userName;
+this.password = password;
+}
+public String getUserName() {
+return userName;
+}
+public void setUserName(String userName) {
+this.userName = userName;
+}
+public String getPassword() {
+return password;
+}
+public void setPassword(String password) {
+this.password = password;
+}
+String password;
+}
+
+---------------------------------------
+
+<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
+    pageEncoding="ISO-8859-1"%>
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="ISO-8859-1">
+<title>Insert title here</title>
+</head>
+<body>
+
+WELCOME TO MVC WITH BOOT
+
+</body>
+</html>
+
+------------------------------------------------------
+
+
+<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
+    pageEncoding="ISO-8859-1"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+
+
+<!DOCTYPE html>
+<html>
+<head>
+<link href="/css/style.css"  rel="stylesheet" type="text/css">
+<meta charset="ISO-8859-1">
+<title>Insert title here</title>
+</head>
+<body>
+
+<table align="center">
+<tr> <th> username </th> <th> paassword </th> </tr>
+<c:forEach items="${users}" var="users">
+<tr>
+<td> ${users.userName}</td>
+<td> ${users.password} </td>
+
+</tr>
+</c:forEach>
+</table>
+
+
+</body>
+</html>

@@ -1,0 +1,286 @@
+
+
+
+
+
+
+package com.myapp.model;
+
+import javax.persistence.Entity;
+import javax.persistence.Id;
+
+@Entity
+public class Employee {
+	
+	@Id
+	private int empID;
+	private String empName;
+	private String city;
+	private int age;
+	private String dept;
+	public Employee(int empID, String empName, String city, int age, String dept) {
+		super();
+		this.empID = empID;
+		this.empName = empName;
+		this.city = city;
+		this.age = age;
+		this.dept = dept;
+	}
+	public int getEmpID() {
+		return empID;
+	}
+	public void setEmpID(int empID) {
+		this.empID = empID;
+	}
+	public String getEmpName() {
+		return empName;
+	}
+	public void setEmpName(String empName) {
+		this.empName = empName;
+	}
+	public String getCity() {
+		return city;
+	}
+	public void setCity(String city) {
+		this.city = city;
+	}
+	public int getAge() {
+		return age;
+	}
+	public void setAge(int age) {
+		this.age = age;
+	}
+	public String getDept() {
+		return dept;
+	}
+	public void setDept(String dept) {
+		this.dept = dept;
+	}
+	@Override
+	public String toString() {
+		return "Employee [empID=" + empID + ", empName=" + empName + ", city=" + city + ", age=" + age + ", dept="
+				+ dept + "]";
+	}
+	
+	public Employee() {
+		// TODO Auto-generated constructor stub
+	}
+	
+
+}
+
+
+-----------------------------------
+
+
+
+package com.myapp.dao;
+
+import java.util.ArrayList;
+
+import org.hibernate.Criteria;
+import org.hibernate.Session;
+import org.hibernate.SessionFactory;
+import org.hibernate.Transaction;
+import org.hibernate.cfg.Configuration;
+import org.hibernate.criterion.Criterion;
+import org.hibernate.criterion.LogicalExpression;
+import org.hibernate.criterion.Restrictions;
+import org.hibernate.engine.transaction.jta.platform.internal.ResinJtaPlatform;
+
+import com.myapp.model.Employee;
+
+
+
+public class EmployeeDao {
+	
+	SessionFactory factory= null;
+	
+	public EmployeeDao() {
+		factory=new Configuration().configure().buildSessionFactory();
+	}
+	
+	
+	public ArrayList<Employee> getAllRecordsAge()
+	{
+		try
+		{
+			Session session= factory.openSession();
+			Transaction tx=session.beginTransaction();
+			
+			Criteria ct=session.createCriteria(Employee.class);
+			ArrayList<Employee> employees =(ArrayList<Employee>)ct.add(Restrictions.gt("age", 40)).list();   //
+			tx.commit();
+			return employees;
+		
+		}
+		
+		catch (Exception e) {
+			e.printStackTrace();
+			}
+			finally {
+			factory.close();
+			}
+
+			return null;
+	}
+	
+	
+	public ArrayList<Employee> getAllRecordsLike()
+	{
+		try
+		{
+			Session session= factory.openSession();
+			Transaction tx=session.beginTransaction();
+			
+			Criteria ct=session.createCriteria(Employee.class);
+			ArrayList<Employee> employees =(ArrayList<Employee>)ct.add(Restrictions.ilike("city","b%")).list();
+			tx.commit();
+			return employees;
+		
+		}
+		
+		catch (Exception e) {
+			e.printStackTrace();
+			}
+			finally {
+			factory.close();
+			}
+
+			return null;
+	}
+	
+	
+	public ArrayList<Employee> getAllRecordsAgeCity()
+	{
+		try
+		{
+			Session session= factory.openSession();
+			Transaction tx=session.beginTransaction();
+			
+			Criteria ct=session.createCriteria(Employee.class);
+			
+			
+			Criterion empage=Restrictions.gt("age",40);
+			Criterion empcity=Restrictions.ilike("city","bangalore");
+			
+			LogicalExpression exp=Restrictions.and(empage,empcity);
+			ArrayList<Employee> employees=(ArrayList<Employee>)ct.add(exp).list();
+			
+			
+			tx.commit();
+			return employees;
+		
+		}
+		
+		catch (Exception e) {
+			e.printStackTrace();
+			}
+			finally {
+			factory.close();
+			}
+
+			return null;
+	}
+	
+	
+	public ArrayList<Employee> getAllRecordsAgeDept()
+	{
+		try
+		{
+			Session session= factory.openSession();
+			Transaction tx=session.beginTransaction();
+			
+			Criteria ct=session.createCriteria(Employee.class);
+			
+			
+			Criterion empage=Restrictions.gt("age",40);
+			Criterion empdept=Restrictions.ilike("dept","sales");
+			
+			LogicalExpression exp=Restrictions.or(empage,empdept);
+			ArrayList<Employee> employees=(ArrayList<Employee>)ct.add(exp).list();
+			
+			
+			tx.commit();
+			return employees;
+		
+		}
+		
+		catch (Exception e) {
+			e.printStackTrace();
+			}
+			finally {
+			factory.close();
+			}
+
+			return null;
+	}
+	
+	
+	public ArrayList<Employee> getAllRecordsDept()
+	{
+		try
+		{
+			Session session= factory.openSession();
+			Transaction tx=session.beginTransaction();
+			
+			Criteria ct=session.createCriteria(Employee.class);
+			
+			
+			Criterion empdept1=Restrictions.ilike("dept","hr");
+			Criterion empdept=Restrictions.ilike("dept","sales");
+			
+			LogicalExpression exp=Restrictions.or(empdept1,empdept);
+			ArrayList<Employee> employees=(ArrayList<Employee>)ct.add(exp).list();
+			
+			
+			tx.commit();
+			return employees;
+		
+		}
+		
+		catch (Exception e) {
+			e.printStackTrace();
+			}
+			finally {
+			factory.close();
+			}
+
+			return null;
+	}
+	
+	
+	
+	
+	
+
+}
+
+
+----------------
+
+package com.myapp.service;
+
+import java.util.ArrayList;
+
+import com.myapp.dao.EmployeeDao;
+import com.myapp.model.Employee;
+
+public class EmployeeService {
+
+	public static void main(String[] args) {
+		
+		EmployeeDao dao=new EmployeeDao();
+		
+		ArrayList<Employee> employees=(ArrayList<Employee>)dao.getAllRecordsDept();
+		
+		for(Employee employee1:employees)
+		{
+			System.out.println(employee1);
+		}
+		  
+				
+
+	}
+
+}
