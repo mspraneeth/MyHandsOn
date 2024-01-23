@@ -17,7 +17,7 @@ highest of 3 given numbers
 54
 0
 
-alert('TIME UP')
+alert('TIME UP ra ayya')
 
 ------------------------------------Answer
 
